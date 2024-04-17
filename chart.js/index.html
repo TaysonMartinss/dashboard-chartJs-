@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard com Chart.js</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+    <div style="width: 50%; float: left;">
+        <canvas id="graficoLinhas"></canvas>
+    </div>
+
+   
+    <div style="width: 50%; float: right;">
+        <canvas id="graficoBarras"></canvas>
+    </div>
+
+    <script>
+        // Dados do gráfico de linhas
+        var dadosLinhas = {
+            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            datasets: [{
+                label: 'Temperatura',
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                data: [30, 29, 28, 25, 22, 23]
+            }, {
+                label: 'Umidade',
+                borderColor: 'rgb(54, 162, 235)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                data: [80, 82, 80, 85, 80, 83]
+            }]
+        };
+
+        
+        var opcoesLinhas = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        };
+
+        
+        var ctxLinhas = document.getElementById('graficoLinhas').getContext('2d');
+        var graficoLinhas = new Chart(ctxLinhas, {
+            type: 'line',
+            data: dadosLinhas,
+            options: opcoesLinhas
+        });
+
+       
+        var dadosBarras = {
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+            datasets: [{
+                label: 'Temperatura média',
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                borderColor: 'rgb(255, 159, 64)',
+                borderWidth: 1,
+                data: [22, 24, 27, 23, 20, 18]
+            }, {
+                label: 'Umidade média',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgb(75, 192, 192)',
+                borderWidth: 1,
+                data: [90, 89, 93, 87, 88, 82]
+            }]
+        };
+
+        
+        var opcoesBarras = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        };
+
+   
+        var ctxBarras = document.getElementById('graficoBarras').getContext('2d');
+        var graficoBarras = new Chart(ctxBarras, {
+            type: 'bar',
+            data: dadosBarras,
+            options: opcoesBarras
+        });
+    </script>
+</body>
+</html>
